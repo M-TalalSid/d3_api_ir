@@ -118,8 +118,8 @@ export default function PaymentsPage() {
               </Label>
               <Select
                 value={newPayment.status}
-                onValueChange={(value) =>
-                  setNewPayment({ ...newPayment, status: value })
+                onValueChange={(value: unknown) =>
+                  setNewPayment({ ...newPayment, status: value as string })
                 }
               >
                 <SelectTrigger className="col-span-3 bg-gray-700 text-white">

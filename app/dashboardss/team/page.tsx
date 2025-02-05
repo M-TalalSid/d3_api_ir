@@ -190,8 +190,8 @@ export default function TeamPage() {
               </Label>
               <Select
                 value={newMember.status}
-                onValueChange={(value) =>
-                  setNewMember({ ...newMember, status: value })
+                onValueChange={(value: unknown) =>
+                  setNewMember({ ...newMember, status: value as string })
                 }
               >
                 <SelectTrigger className="col-span-3 bg-gray-700 text-white">

@@ -1,50 +1,51 @@
-"use client";
+"use client"
 
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { AuthProvider } from "./contexts/AuthContext";
-import { SessionProvider } from "next-auth/react";
-import { Toaster } from "@/components/ui/toaster";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { type ThemeProviderProps } from "next-themes";
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import { AuthProvider } from "./contexts/AuthContext"
+import { SessionProvider } from "next-auth/react"
+import { Toaster } from "@/components/ui/toaster"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import type { ThemeProviderProps } from "next-themes"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
-import type { ReactNode } from "react";
-import type { Session } from "next-auth";
+import type { ReactNode } from "react"
+import type { Session } from "next-auth"
 
 // ThemeProvider wrapper
 function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
+
+// Create a client
+const queryClient = new QueryClient()
 
 // AppProviders wrapper
 function AppProviders({ children, session }: { children: ReactNode; session: Session | null }) {
   return (
-    <SessionProvider session={session}>
-      <AuthProvider>
-        <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "" }}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </PayPalScriptProvider>
-      </AuthProvider>
-    </SessionProvider>
-  );
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session}>
+        <AuthProvider>
+          <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "" }}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              {children}
+            </ThemeProvider>
+          </PayPalScriptProvider>
+        </AuthProvider>
+      </SessionProvider>
+    </QueryClientProvider>
+  )
 }
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
@@ -57,5 +58,6 @@ export default function RootLayout({
         </AppProviders>
       </body>
     </html>
-  );
+  )
 }
+

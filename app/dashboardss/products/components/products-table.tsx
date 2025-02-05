@@ -199,7 +199,7 @@ export function ProductsTable({ getProductsAction }: ProductsTableProps) {
           />
           <Select
             value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
-            onValueChange={(value) =>
+            onValueChange={(value: unknown) =>
               table.getColumn("type")?.setFilterValue(value)
             }
           >

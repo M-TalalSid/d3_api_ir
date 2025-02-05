@@ -5,7 +5,7 @@ import { createClient } from "next-sanity";
 const sanityClient = createClient({
   projectId: "bpqk9m66", // Replace with your Sanity project ID
   dataset: "production", // Replace with your dataset name
-  apiVersion: "2021-08-31", // Replace with your preferred API version
+  apiVersion: "2025-02-04", // Replace with your preferred API version
   useCdn: true, // Use true for faster reads if no need for fresh data
 });
 // GROQ query to fetch products

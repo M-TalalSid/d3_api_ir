@@ -102,7 +102,7 @@ export default function SettingsPage() {
                 <Label htmlFor="language">Language</Label>
                 <Select
                   value={settings.language}
-                  onValueChange={(value) => handleChange("language", value)}
+                  onValueChange={(value: string) => handleChange("language", value)}
                 >
                   <SelectTrigger className="w-full bg-gray-700 text-white">
                     <SelectValue placeholder="Select language" />
@@ -118,7 +118,7 @@ export default function SettingsPage() {
                 <Label htmlFor="timezone">Timezone</Label>
                 <Select
                   value={settings.timezone}
-                  onValueChange={(value) => handleChange("timezone", value)}
+                  onValueChange={(value: string) => handleChange("timezone", value)}
                 >
                   <SelectTrigger className="w-full bg-gray-700 text-white">
                     <SelectValue placeholder="Select timezone" />
