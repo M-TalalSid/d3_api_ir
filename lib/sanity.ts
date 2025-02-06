@@ -20,7 +20,7 @@ export const client = createClient({
   useCdn: false, // Set to false to ensure fresh data
 })
 
-// Validate the connection
+// Validate the connectionzz
 export async function validateSanityConnection() {
   try {
     // Try to fetch a single document to validate connection
